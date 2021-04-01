@@ -50,7 +50,7 @@ function playRound(playerSelection, computerSelection) {
         playerWin++;//+1 for player
     } else if (playerSelection.toLowerCase() === "paper" && computerSelection === "Scissors") {
         
-        console.log("You Lose! Scissors beats Paper");
+        console.log("You Lose! Scissors beat Paper");
         computerWin++;//+1 for computer
     } else if (playerSelection.toLowerCase() === "paper" && computerSelection === "Paper") {
         
@@ -62,7 +62,7 @@ function playRound(playerSelection, computerSelection) {
         computerWin++;//+1 for computer
     } else if (playerSelection.toLowerCase() === "scissors" && computerSelection === "Paper") {
         
-        console.log("You Win! Scissors beats Paper");
+        console.log("You Win! Scissors beat Paper");
         playerWin++;//+1 for player
     } else if (playerSelection.toLowerCase() === "scissors" && computerSelection === "Scissors") {
         
@@ -82,7 +82,7 @@ function whoWin(playerWin, computerWin) {
     } else if (playerWin === computerWin) {
         alert("It is a tie!");
     } else {
-        alert("You are the Loser!");
+        alert("Game over!");
     }
 }
 //function of the main game to play a 5 round game
@@ -92,7 +92,7 @@ function game() {
 
     //loop of 5 rounds
     for (let i = 0; i < 5; i++) {
-        playerSelection = prompt("What is your play?"); //the move of the player
+        playerSelection = prompt("Rock, Paper, Scissors?"); //the move of the player
         computerSelection = computerPlay(); //the variable call the function computerPlay()
         playRound(playerSelection, computerSelection);//start the function playRound for the first round
     }
