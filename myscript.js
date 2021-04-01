@@ -1,21 +1,13 @@
-//create a function that return randomly 
-//either rock, paper or scissors
-
-//maybe the function will return a string randomly from
-//an array where I stored the three different options
-
+//array that store rock paper and scissors
 let play = ["Rock", "Paper", "Scissors"];
 
+//function that return a random string from the array play
 function computerPlay() {
     return play[Math.floor(Math.random() * play.length)];
+    //use Math.random() with Math.floor() to return a 
+    //random string from the length of the array play
+    //so any of the three elements of the array
 }
-
-//create a function that plays a single round 
-//of rock paper scissors
-//function takes two parameters :
-// - playerSelection
-// - computerSelection
-//then return a string that declares the winner
 
 //the beginning will start with my input 
 //(has to be case-insensitive) by using .toLowerCase()
@@ -32,18 +24,22 @@ function computerPlay() {
 //if my scissors vs paper, I win
 //if my scissors vs rock, I lose
 //if my scissors vs scissors, draw
-let playerWin = 0;
-let computerWin = 0;
+let playerWin = 0;//varaible that store the score of the player
+let computerWin = 0;//varaible that store the score of the computer
 
+//function that plays a single round of rock paper scissors
+//takes two parameters
+// - playerSelection : the input of the player
+// - computerSelection : the output of the function computerPlay()
 function playRound(playerSelection, computerSelection) {
     if(playerSelection.toLowerCase() === "rock" && computerSelection === "Paper") {
-        
+        //put the string of playerSelection in lower case to compare with rock
         console.log("You Lose! Paper beats Rock");
-        computerWin++;
+        computerWin++;//+1 for computer
     } else if (playerSelection.toLowerCase() === "rock" && computerSelection === "Scissors") {
         
         console.log("You Win! Rock beats Scissors");
-        playerWin++;
+        playerWin++;//+1 for player
     } else if (playerSelection.toLowerCase() === "rock" && computerSelection === "Rock") {
         
         console.log("You Draw! Rock = Rock");
@@ -51,11 +47,11 @@ function playRound(playerSelection, computerSelection) {
     } else if (playerSelection.toLowerCase() === "paper" && computerSelection === "Rock") {
         
         console.log("You Win! Paper beats Rock");
-        playerWin++;
+        playerWin++;//+1 for player
     } else if (playerSelection.toLowerCase() === "paper" && computerSelection === "Scissors") {
         
         console.log("You Lose! Scissors beats Paper");
-        computerWin++;
+        computerWin++;//+1 for computer
     } else if (playerSelection.toLowerCase() === "paper" && computerSelection === "Paper") {
         
         console.log("You Draw! Paper = Paper");
@@ -63,11 +59,11 @@ function playRound(playerSelection, computerSelection) {
     } else if (playerSelection.toLowerCase() === "scissors" && computerSelection === "Rock") {
         
         console.log("You Lose! Rock beats Scissors");
-        computerWin++;
+        computerWin++;//+1 for computer
     } else if (playerSelection.toLowerCase() === "scissors" && computerSelection === "Paper") {
         
         console.log("You Win! Scissors beats Paper");
-        playerWin++;
+        playerWin++;//+1 for player
     } else if (playerSelection.toLowerCase() === "scissors" && computerSelection === "Scissors") {
         
         console.log("You Draw! Scissors = Scissors");
@@ -75,12 +71,11 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-//alert(playRound(playerSelection, computerSelection)); //the result of the function playRound()
+//the result of the function playRound() for one round
+//alert(playRound(playerSelection, computerSelection)); 
 
-//create a function game() and put playRound() inside
-//play a 5 round game
-//keep score and return the winner at the end
-
+//function that check the number of win of the player 
+//and the computer, and compare the results
 function whoWin(playerWin, computerWin) {
     if (playerWin > computerWin) {
         alert("You are a Champion!");
@@ -90,17 +85,22 @@ function whoWin(playerWin, computerWin) {
         alert("You are the Loser!");
     }
 }
-
+//function of the main game to play a 5 round game
 function game() {
-    let playerSelection;
-    let computerSelection;
+    let playerSelection;//variable where we get the input of the player
+    let computerSelection;//variable where we store the output of the function computerPlay()
 
+    //loop of 5 rounds
     for (let i = 0; i < 5; i++) {
         playerSelection = prompt("What is your play?"); //the move of the player
         computerSelection = computerPlay(); //the variable call the function computerPlay()
-        playRound(playerSelection, computerSelection);
+        playRound(playerSelection, computerSelection);//start the function playRound for the first round
     }
 }
 
+//call the function game() to start to play
 game();
+
+//called this function to check the winner and
+//return an alert with the winner
 whoWin(playerWin, computerWin);
