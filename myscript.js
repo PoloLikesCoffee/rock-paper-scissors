@@ -1,106 +1,148 @@
-//array that store rock paper and scissors
+const title = document.createElement('h1');
+title.setAttribute('style', 'display: flex; justify-content: center;');
+title.textContent = 'Let\'s play Rock Paper Scissors!!!';
+document.body.appendChild(title);
+
+const mainButton = document.createElement('div');
+mainButton.setAttribute('style', 'display: flex; justify-content: space-around;');
+document.body.appendChild(mainButton);
+
+const rock = document.createElement('BUTTON');
+rock.textContent = 'ROCK';
+mainButton.appendChild(rock); 
+rock.addEventListener('click', () => {
+    let playerSelection ='rock';
+    let computerSelection = computerPlay();
+    playRound(playerSelection, computerSelection);
+    whoWin(playerWin, computerWin);
+});
+
+const paper = document.createElement('BUTTON');
+paper.textContent = 'PAPER';
+mainButton.appendChild(paper); 
+paper.addEventListener('click', () => {
+    let playerSelection ='paper';
+    let computerSelection = computerPlay();
+    playRound(playerSelection, computerSelection);
+    whoWin(playerWin, computerWin);
+});
+
+const scissors = document.createElement('BUTTON');
+scissors.textContent = 'SCISSORS';
+mainButton.appendChild(scissors); 
+scissors.addEventListener('click', () => {
+    let playerSelection ='scissors';
+    let computerSelection = computerPlay();
+    playRound(playerSelection, computerSelection);
+    whoWin(playerWin, computerWin);
+});
+
+const div = document.createElement('div');
+div.setAttribute('style', 'display: flex; flex-direction: column; align-items: center;');
+const title2 = document.createElement('h2');
+title2.textContent = 'The running score : ';
+div.appendChild(title2);
+const p = document.createElement('p');
+p.setAttribute('style', 'white-space: pre;');
+div.appendChild(p);
+document.body.appendChild(div);
+
 let play = ["Rock", "Paper", "Scissors"];
 
-//function that return a random string from the array play
 function computerPlay() {
-    return play[Math.floor(Math.random() * play.length)];
-    //use Math.random() with Math.floor() to return a 
-    //random string from the length of the array play
-    //so any of the three elements of the array
+      return play[Math.floor(Math.random() * play.length)];
 }
 
-//the beginning will start with my input 
-//(has to be case-insensitive) by using .toLowerCase()
+let playerWin = 0;
+let computerWin = 0;
 
-//now the function playRound() will be called:
-//if my rock vs paper, I lose
-//if my rock vs scissors, I win
-//if my rock vs rock, draw
-
-//if my paper vs rock, I win
-//if my paper vs scissors, I lose
-//if my paper vs paper, draw
-
-//if my scissors vs paper, I win
-//if my scissors vs rock, I lose
-//if my scissors vs scissors, draw
-let playerWin = 0;//varaible that store the score of the player
-let computerWin = 0;//varaible that store the score of the computer
-
-//function that plays a single round of rock paper scissors
-//takes two parameters
-// - playerSelection : the input of the player
-// - computerSelection : the output of the function computerPlay()
 function playRound(playerSelection, computerSelection) {
     if(playerSelection.toLowerCase() === "rock" && computerSelection === "Paper") {
-        //put the string of playerSelection in lower case to compare with rock
-        console.log("You Lose! Paper beats Rock");
-        computerWin++;//+1 for computer
+        
+        computerWin++;
+        p.textContent += playerWin + ' - ' + computerWin + ' You Lose! Paper beats Rock\r\n';
+        div.appendChild(p);
     } else if (playerSelection.toLowerCase() === "rock" && computerSelection === "Scissors") {
         
-        console.log("You Win! Rock beats Scissors");
-        playerWin++;//+1 for player
+        playerWin++;
+        p.textContent += playerWin + ' - ' + computerWin + ' You Win! Rock beats Scissors\r\n';
+        div.appendChild(p);
     } else if (playerSelection.toLowerCase() === "rock" && computerSelection === "Rock") {
-        
-        console.log("You Draw! Rock = Rock");
+        p.textContent += playerWin + ' - ' + computerWin + ' You Draw! Rock = Rock\r\n';
+        div.appendChild(p);
         
     } else if (playerSelection.toLowerCase() === "paper" && computerSelection === "Rock") {
         
-        console.log("You Win! Paper beats Rock");
-        playerWin++;//+1 for player
+        playerWin++;
+        p.textContent += playerWin + ' - ' + computerWin + ' You Win! Paper beats Rock\r\n';
+        div.appendChild(p);
     } else if (playerSelection.toLowerCase() === "paper" && computerSelection === "Scissors") {
         
-        console.log("You Lose! Scissors beat Paper");
-        computerWin++;//+1 for computer
+        computerWin++;
+        p.textContent += playerWin + ' - ' + computerWin + ' You Lose! Scissors beat Paper\r\n';
+        div.appendChild(p);
     } else if (playerSelection.toLowerCase() === "paper" && computerSelection === "Paper") {
-        
-        console.log("You Draw! Paper = Paper");
+        p.textContent += playerWin + ' - ' + computerWin + ' You Draw! Paper = Paper\r\n';
+        div.appendChild(p);
         
     } else if (playerSelection.toLowerCase() === "scissors" && computerSelection === "Rock") {
         
-        console.log("You Lose! Rock beats Scissors");
-        computerWin++;//+1 for computer
+        computerWin++;
+        p.textContent += playerWin + ' - ' + computerWin + ' You Lose! Rock beats Scissors\r\n';
+        div.appendChild(p);
     } else if (playerSelection.toLowerCase() === "scissors" && computerSelection === "Paper") {
         
-        console.log("You Win! Scissors beat Paper");
-        playerWin++;//+1 for player
+        playerWin++;
+        p.textContent += playerWin + ' - ' + computerWin + ' You Win! Scissors beat Paper\r\n';
+        div.appendChild(p);
     } else if (playerSelection.toLowerCase() === "scissors" && computerSelection === "Scissors") {
-        
-        console.log("You Draw! Scissors = Scissors");
+        p.textContent += playerWin + ' - ' + computerWin + ' You Draw! Scissors = Scissors\r\n';
+        div.appendChild(p);
         
     }
 }
 
-//the result of the function playRound() for one round
-//alert(playRound(playerSelection, computerSelection)); 
-
-//function that check the number of win of the player 
-//and the computer, and compare the results
 function whoWin(playerWin, computerWin) {
-    if (playerWin > computerWin) {
-        alert("You are a Champion!");
-    } else if (playerWin === computerWin) {
-        alert("It is a tie!");
-    } else {
-        alert("Game over!");
-    }
+    if (playerWin >= 5) {
+
+        const btns = document.querySelectorAll('BUTTON');
+        btns.forEach((button) => {
+            button.disabled = true;
+        });
+
+        document.onload = setTimeout(function () { 
+            const div2 = document.createElement('div');
+            div2.setAttribute('style', 'color: blue; font-size: 20px;');
+            div2.textContent +="You are a Champion!";
+            div.appendChild(div2);
+            //alert("You are a Champion!");
+            const restart = document.createElement('BUTTON');
+            restart.textContent = 'RESTART';
+            div.appendChild(restart); 
+            restart.addEventListener('click', () => {
+                location.reload();
+            });
+        }, 500);
+
+    } else if (computerWin >= 5) {
+
+        const btns = document.querySelectorAll('BUTTON');
+        btns.forEach((button) => {
+            button.disabled = true;
+        });
+
+        document.onload = setTimeout(function () { 
+            const div2 = document.createElement('div');
+            div2.setAttribute('style', 'color: red; font-size: 20px;');
+            div2.textContent +="Game Over!!";
+            div.appendChild(div2);
+            //alert("Game Over!!");
+            const restart = document.createElement('BUTTON');
+            restart.textContent = 'RESTART';
+            div.appendChild(restart); 
+            restart.addEventListener('click', () => {
+                location.reload();
+            });
+        }, 500);
+    } 
 }
-//function of the main game to play a 5 round game
-function game() {
-    let playerSelection;//variable where we get the input of the player
-    let computerSelection;//variable where we store the output of the function computerPlay()
-
-    //loop of 5 rounds
-    for (let i = 0; i < 5; i++) {
-        playerSelection = prompt("Rock, Paper, Scissors?"); //the move of the player
-        computerSelection = computerPlay(); //the variable call the function computerPlay()
-        playRound(playerSelection, computerSelection);//start the function playRound for the first round
-    }
-}
-
-//call the function game() to start to play
-game();
-
-//called this function to check the winner and
-//return an alert with the winner
-whoWin(playerWin, computerWin);
